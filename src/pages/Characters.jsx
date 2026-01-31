@@ -10,7 +10,7 @@ export default function Characters() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://site--marvel-backend--vh5s8x8f2hgt.code.run/api/characters",
+          "https://site--marvel-backend--vh5s8x8f2hgt.code.run/api/characters",
         );
         // console.log(response.data.results);
         setCharactersData(response.data.results);

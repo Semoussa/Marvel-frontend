@@ -9,7 +9,7 @@ export default function Comics() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://site--marvel-backend--vh5s8x8f2hgt.code.run/api/comics",
+          "https://site--marvel-backend--vh5s8x8f2hgt.code.run/api/comics",
         );
         // console.log(response.data);
 
