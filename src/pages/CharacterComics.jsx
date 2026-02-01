@@ -37,7 +37,7 @@ export default function CharacterComics() {
             alt={characterData.name}
           />
         </div>
-        <div className="chara-content">
+        <div className="content">
           <h2>{characterData.name}</h2>
           <p>{characterData.description}</p>
         </div>

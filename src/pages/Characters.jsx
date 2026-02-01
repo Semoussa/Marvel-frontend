@@ -34,7 +34,7 @@ export default function Characters() {
             key={`${elem._id}${index}`}
             className="character-card"
           >
-            <div>
+            <div className="card-image">
               <img
                 src={`${elem.thumbnail.path}/portrait_uncanny.${elem.thumbnail.extension}`}
                 alt={elem.name}
@@ -42,8 +42,8 @@ export default function Characters() {
             </div>
             <div className="overlay"></div>
             <div className="content">
-              <p>{elem.name}</p>
-              <p>{elem.description}</p>
+              <p className="orbitron-title">{elem.name}</p>
+              <p className="desc">{elem.description}</p>
             </div>
           </Link>
         );

@@ -11,7 +11,7 @@ export default function Comics() {
         const response = await axios.get(
           "https://site--marvel-backend--vh5s8x8f2hgt.code.run/api/comics",
         );
-        // console.log(response.data);
+        console.log(response.data);
 
         setComicsData(response.data.results);
         setIsLoading(false);
@@ -28,23 +28,18 @@ export default function Comics() {
   ) : (
     <div className="wrapper comics">
       {comicsData.map((elem) => {
-        // {
-        //   if (!elem.name) {
-        //     return;
-        //   }
-        // }
         return (
           <div key={elem._id} className="comic-card">
-            <div>
+            <div className="card-image">
               <img
                 src={`${elem.thumbnail.path}/portrait_uncanny.${elem.thumbnail.extension}`}
-                alt={elem.name}
+                alt={elem.title}
               />
             </div>
             <div className="overlay"></div>
             <div className="content">
-              <p>{elem.name}</p>
-              <p>{elem.description}</p>
+              <p className="orbitron-title">{elem.title}</p>
+              <p className="desc">{elem.description}</p>
             </div>
           </div>
         );

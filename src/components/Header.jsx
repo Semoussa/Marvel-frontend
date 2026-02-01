@@ -20,7 +20,7 @@ export default function Header(props) {
           <button>Se connecter</button>
         </div>
       </div>
-      <div className="menu">
+      <div className="menu roboto-title">
         <div
           onClick={() => {
             navigate("/characters");
