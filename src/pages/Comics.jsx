@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ComicCard from "../components/ComicCard";
 
 export default function Comics() {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,7 +12,7 @@ export default function Comics() {
         const response = await axios.get(
           "https://site--marvel-backend--vh5s8x8f2hgt.code.run/api/comics",
         );
-        console.log(response.data);
+        // console.log(response.data);
 
         setComicsData(response.data.results);
         setIsLoading(false);
@@ -23,26 +24,16 @@ export default function Comics() {
     fetchData();
   }, []);
 
+  const sortedComics = [...comicsData].sort((a, b) => {
+    return a.title.localeCompare(b.title);
+  });
+
   return isLoading ? (
     <p>Téléchargement</p>
   ) : (
     <div className="wrapper comics">
-      {comicsData.map((elem) => {
-        return (
-          <div key={elem._id} className="comic-card">
-            <div className="card-image">
-              <img
-                src={`${elem.thumbnail.path}/portrait_uncanny.${elem.thumbnail.extension}`}
-                alt={elem.title}
-              />
-            </div>
-            <div className="overlay"></div>
-            <div className="content">
-              <p className="orbitron-title">{elem.title}</p>
-              <p className="desc">{elem.description}</p>
-            </div>
-          </div>
-        );
+      {sortedComics.map((elem) => {
+        return <ComicCard elem={elem} key={elem._id} />;
       })}
     </div>
   );

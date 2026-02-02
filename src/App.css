@@ -161,7 +161,6 @@ header input::placeholder {
   height: 380px;
   background-color: #2d2d2d;
   color: white;
-  position: relative;
   overflow: hidden;
   text-decoration: none;
   display: flex;
@@ -201,6 +200,7 @@ header input::placeholder {
   flex: 1;
   flex-direction: column;
   gap: 10px;
+  /* line-height: normal; */
   justify-content: space-between;
   /* border: 1px solid yellow; */
 }
@@ -239,4 +239,5 @@ header input::placeholder {
   color: white;
   height: auto;
   justify-content: flex-start;
+  line-height: normal;
 }

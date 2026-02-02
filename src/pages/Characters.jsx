@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import CharacterCard from "../components/CharacterCard";
 
 export default function Characters() {
   const [charactersData, setCharactersData] = useState("");
@@ -28,25 +28,7 @@ export default function Characters() {
   ) : (
     <div className="wrapper characters">
       {charactersData.map((elem, index) => {
-        return (
-          <Link
-            to={`/character/${elem._id}`}
-            key={`${elem._id}${index}`}
-            className="character-card"
-          >
-            <div className="card-image">
-              <img
-                src={`${elem.thumbnail.path}/portrait_uncanny.${elem.thumbnail.extension}`}
-                alt={elem.name}
-              />
-            </div>
-            <div className="overlay"></div>
-            <div className="content">
-              <p className="orbitron-title">{elem.name}</p>
-              <p className="desc">{elem.description}</p>
-            </div>
-          </Link>
-        );
+        return <CharacterCard elem={elem} key={`${elem._id}${index}`} />;
       })}
     </div>
   );
