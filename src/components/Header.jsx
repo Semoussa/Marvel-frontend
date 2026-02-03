@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 export default function Header(props) {
-  const { logo } = props;
+  const { logo, search, setSearch } = props;
   const navigate = useNavigate();
   return (
     <header>
@@ -14,7 +14,14 @@ export default function Header(props) {
         >
           <img src={logo} alt="" />
         </div>
-        <input type="text" placeholder="Trouver un film, ou un personnage" />
+        <input
+          type="text"
+          placeholder="Trouver un film, ou un personnage"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+        />
         <div className="header-button">
           <button>S'inscrire</button>
           <button>Se connecter</button>

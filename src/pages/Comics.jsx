@@ -2,15 +2,27 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ComicCard from "../components/ComicCard";
 
-export default function Comics() {
+export default function Comics(props) {
+  const { search } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [comicsData, setComicsData] = useState("");
-
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [search]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "https://site--marvel-backend--vh5s8x8f2hgt.code.run/api/comics",
+          {
+            params: {
+              title: debouncedSearch,
+            },
+          },
         );
         // console.log(response.data);
 
@@ -22,7 +34,7 @@ export default function Comics() {
     };
 
     fetchData();
-  }, []);
+  }, [debouncedSearch]);
 
   const sortedComics = [...comicsData].sort((a, b) => {
     return a.title.localeCompare(b.title);
