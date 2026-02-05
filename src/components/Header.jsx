@@ -23,8 +23,7 @@ export default function Header(props) {
           }}
         />
         <div className="header-button">
-          <button>S'inscrire</button>
-          <button>Se connecter</button>
+          <button>S'INSCRIRE </button> <button>SE CONNECTER</button>
         </div>
       </div>
       <div className="menu roboto-title">

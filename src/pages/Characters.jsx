@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CharacterCard from "../components/CharacterCard";
+import Pagination from "../components/pagination";
 
 export default function Characters(props) {
   const { search } = props;
   const [charactersData, setCharactersData] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [debouncedSearch, setDebouncedSearch] = useState(search);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+  const limit = 18;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,11 +27,15 @@ export default function Characters(props) {
           {
             params: {
               name: debouncedSearch,
+              limit,
+              skip: (page - 1) * limit,
             },
           },
         );
-        // console.log(response.data.results);
+        // console.log(response.data);
         setCharactersData(response.data.results);
+        setTotal(response.data.count);
+
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -35,15 +43,25 @@ export default function Characters(props) {
     };
 
     fetchData();
-  }, [debouncedSearch]);
+  }, [debouncedSearch, page]);
+
+  const totalPage = Math.ceil(total / limit);
+  console.log(totalPage);
 
   return isLoading ? (
     <p>Téléchargement...</p>
   ) : (
-    <div className="wrapper characters">
-      {charactersData.map((elem, index) => {
-        return <CharacterCard elem={elem} key={`${elem._id}${index}`} />;
-      })}
-    </div>
+    <>
+      <div className="wrapper characters">
+        {charactersData.map((elem, index) => {
+          return (
+            <>
+              <CharacterCard elem={elem} key={`${elem._id}${index}`} />
+            </>
+          );
+        })}
+      </div>
+      <Pagination page={page} setPage={setPage} totalPage={totalPage} />
+    </>
   );
 }

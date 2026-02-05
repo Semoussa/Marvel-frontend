@@ -1,3 +1,4 @@
+import FavorisIcon from "./FavorisIcon";
 export default function ComicCard({ elem }) {
   return (
     <div className="comic-card">
@@ -12,6 +13,7 @@ export default function ComicCard({ elem }) {
         <p className="orbitron-title">{elem.title}</p>
         <p className="desc">{elem.description}</p>
       </div>
+      <FavorisIcon />
     </div>
   );
 }
