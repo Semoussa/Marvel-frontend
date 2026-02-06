@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ComicCard from "../components/ComicCard";
-import Pagination from "../components/pagination";
+import Pagination from "../components/Pagination";
 
 export default function Comics(props) {
   const { search } = props;
