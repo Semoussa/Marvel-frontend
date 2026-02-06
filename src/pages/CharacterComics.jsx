@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import ComicCard from "../components/ComicCard";
-
+import secureImagesUrls from "../utils/secureImagesUrls";
 export default function CharacterComics() {
   const { id } = useParams();
   // console.log(id);
@@ -63,7 +63,11 @@ export default function CharacterComics() {
       <div className="wrapper chara-infos">
         <div className="banner">
           <img
-            src={`${characterData.thumbnail.path}/standard_fantastic.${characterData.thumbnail.extension}`}
+            src={secureImagesUrls(
+              characterData.thumbnail.path,
+              "standard_fantastic",
+              characterData.thumbnail.extension,
+            )}
             alt={characterData.name}
           />
         </div>

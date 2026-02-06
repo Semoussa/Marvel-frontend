@@ -1,3 +1,4 @@
+import secureImagesUrls from "../utils/secureImagesUrls";
 import FavorisIcon from "./FavorisIcon";
 import { Link } from "react-router-dom";
 export default function CharacterCard({ elem }) {
@@ -6,7 +7,11 @@ export default function CharacterCard({ elem }) {
       <Link to={`/character/${elem._id}`} className="character-card">
         <div className="card-image">
           <img
-            src={`${elem.thumbnail.path}/portrait_uncanny.${elem.thumbnail.extension}`}
+            src={secureImagesUrls(
+              elem.thumbnail.path,
+              "portrait_uncanny",
+              elem.thumbnail.extension,
+            )}
             alt={elem.name}
           />
         </div>

@@ -46,7 +46,7 @@ export default function Characters(props) {
   }, [debouncedSearch, page]);
 
   const totalPage = Math.ceil(total / limit);
-  console.log(totalPage);
+  // console.log(totalPage);
 
   return isLoading ? (
     <p>Téléchargement...</p>
@@ -54,11 +54,7 @@ export default function Characters(props) {
     <>
       <div className="wrapper characters">
         {charactersData.map((elem, index) => {
-          return (
-            <>
-              <CharacterCard elem={elem} key={`${elem._id}${index}`} />
-            </>
-          );
+          return <CharacterCard elem={elem} key={`${elem._id}${index}`} />;
         })}
       </div>
       <Pagination page={page} setPage={setPage} totalPage={totalPage} />

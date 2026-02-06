@@ -1,10 +1,15 @@
+import secureImagesUrls from "../utils/secureImagesUrls";
 import FavorisIcon from "./FavorisIcon";
 export default function ComicCard({ elem }) {
   return (
     <div className="comic-card">
       <div className="card-image">
         <img
-          src={`${elem.thumbnail.path}/portrait_uncanny.${elem.thumbnail.extension}`}
+          src={secureImagesUrls(
+            elem.thumbnail.path,
+            "portrait_uncanny",
+            elem.thumbnail.extension,
+          )}
           alt={elem.title}
         />
       </div>
