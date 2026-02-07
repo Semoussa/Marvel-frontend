@@ -27,8 +27,10 @@ export default function ComicCard(props) {
       </div>
       <div className="overlay"></div>
       <div className="content">
-        <p className="orbitron-title">{elem.title}</p>
-        <p className="desc">{elem.description}</p>
+        <p className="orbitron-title card-title">{elem.title}</p>
+        <p className="desc">
+          {elem.description || "Aucune description disponible"}{" "}
+        </p>
       </div>
       <FavorisIcon
         isFavorite={isFavorite}

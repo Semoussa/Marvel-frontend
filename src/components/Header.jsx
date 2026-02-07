@@ -41,7 +41,11 @@ export default function Header(props) {
         >
           <p>COMICS</p>
         </div>
-        <div>
+        <div
+          onClick={() => {
+            navigate("/favoris");
+          }}
+        >
           <p>FAVORIS</p>
         </div>
       </div>
