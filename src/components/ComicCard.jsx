@@ -1,6 +1,18 @@
 import secureImagesUrls from "../utils/secureImagesUrls";
 import FavorisIcon from "./FavorisIcon";
-export default function ComicCard({ elem }) {
+export default function ComicCard(props) {
+  const { elem, favorites, toogleFavorite } = props;
+  const favoriteObj = {
+    id: elem._id,
+    type: "comic",
+    title: elem.title,
+    description: elem.description,
+    thumbnail: elem.thumbnail,
+  };
+
+  const isFavorite = favorites.some(
+    (fav) => fav.id === elem._id && fav.type === "comic",
+  );
   return (
     <div className="comic-card">
       <div className="card-image">
@@ -18,7 +30,12 @@ export default function ComicCard({ elem }) {
         <p className="orbitron-title">{elem.title}</p>
         <p className="desc">{elem.description}</p>
       </div>
-      <FavorisIcon />
+      <FavorisIcon
+        isFavorite={isFavorite}
+        onToogle={() => {
+          toogleFavorite(favoriteObj);
+        }}
+      />
     </div>
   );
 }

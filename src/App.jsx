@@ -13,6 +13,20 @@ import Footer from "./components/Footer";
 function App() {
   const [search, setSearch] = useState("");
   const [favorites, setFavorites] = useState([]);
+  const toogleFavorite = (favorite) => {
+    setFavorites((prev) => {
+      const exists = prev.find(
+        (fav) => fav.id === favorite.id && fav.type === favorite.type,
+      );
+      if (exists) {
+        return prev.filter(
+          (fav) => !(fav.id === favorite.id && fav.type === favorite.type),
+        );
+      } else {
+        return [...prev, favorite];
+      }
+    });
+  };
   return (
     <Router>
       <Header
@@ -20,7 +34,6 @@ function App() {
         search={search}
         setSearch={setSearch}
         favorites={favorites}
-        setFavorites={setFavorites}
       />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -30,7 +43,7 @@ function App() {
             <Characters
               search={search}
               favorites={favorites}
-              setFavorites={setFavorites}
+              toogleFavorite={toogleFavorite}
             />
           }
         />
@@ -40,15 +53,23 @@ function App() {
             <Comics
               search={search}
               favorites={favorites}
-              setFavorites={setFavorites}
+              toogleFavorite={toogleFavorite}
             />
           }
         />
-        <Route path="/character/:id" element={<CharacterComics />} />
+        <Route
+          path="/character/:id"
+          element={
+            <CharacterComics
+              favorites={favorites}
+              toogleFavorite={toogleFavorite}
+            />
+          }
+        />
         <Route
           path="/favoris"
           element={
-            <Favorites favorites={favorites} setFavorites={setFavorites} />
+            <Favorites favorites={favorites} toogleFavorite={toogleFavorite} />
           }
         />
       </Routes>

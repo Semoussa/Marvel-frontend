@@ -3,7 +3,9 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import ComicCard from "../components/ComicCard";
 import secureImagesUrls from "../utils/secureImagesUrls";
-export default function CharacterComics() {
+export default function CharacterComics(props) {
+  const { favorites, toogleFavorite } = props;
+
   const { id } = useParams();
   // console.log(id);
   const [isLoading, setIsLoading] = useState(true);
@@ -78,7 +80,14 @@ export default function CharacterComics() {
       </div>
       <div className="wrapper comics">
         {comicData.map((comic) => {
-          return <ComicCard elem={comic} key={comic._id} />;
+          return (
+            <ComicCard
+              elem={comic}
+              key={comic._id}
+              favorites={favorites}
+              toogleFavorite={toogleFavorite}
+            />
+          );
         })}
       </div>
     </div>

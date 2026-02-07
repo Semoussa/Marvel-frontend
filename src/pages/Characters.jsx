@@ -4,7 +4,7 @@ import CharacterCard from "../components/CharacterCard";
 import Pagination from "../components/Pagination";
 
 export default function Characters(props) {
-  const { search } = props;
+  const { search, favorites, toogleFavorite } = props;
   const [charactersData, setCharactersData] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [debouncedSearch, setDebouncedSearch] = useState(search);
@@ -32,7 +32,7 @@ export default function Characters(props) {
             },
           },
         );
-        // console.log(response.data);
+        // console.log(response.data.results);
         setCharactersData(response.data.results);
         setTotal(response.data.count);
 
@@ -54,7 +54,14 @@ export default function Characters(props) {
     <>
       <div className="wrapper characters">
         {charactersData.map((elem, index) => {
-          return <CharacterCard elem={elem} key={`${elem._id}${index}`} />;
+          return (
+            <CharacterCard
+              elem={elem}
+              key={`${elem._id}${index}`}
+              favorites={favorites}
+              toogleFavorite={toogleFavorite}
+            />
+          );
         })}
       </div>
       <Pagination page={page} setPage={setPage} totalPage={totalPage} />

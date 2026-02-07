@@ -1,8 +1,18 @@
-import { BsHeart } from "react-icons/bs";
-export default function FavorisIcon() {
+import { FaHeart } from "react-icons/fa";
+export default function FavorisIcon(props) {
+  const { onToogle, isFavorite } = props;
   return (
     <div className="icone-card">
-      <BsHeart className="heart-icon" />
+      <FaHeart
+        className="heart-icon"
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          onToogle();
+        }}
+        color={isFavorite ? "red" : "white"}
+        aria-label="Ajouter aux favoris"
+      />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import ComicCard from "../components/ComicCard";
 import Pagination from "../components/Pagination";
 
 export default function Comics(props) {
-  const { search } = props;
+  const { search, favorites, toogleFavorite } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [comicsData, setComicsData] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState(search);
@@ -33,7 +33,7 @@ export default function Comics(props) {
             },
           },
         );
-        // console.log(response.data);
+        // console.log(response.data.results);
 
         setComicsData(response.data.results);
         setTotal(response.data.count);
@@ -58,7 +58,14 @@ export default function Comics(props) {
     <>
       <div className="wrapper comics">
         {sortedComics.map((elem) => {
-          return <ComicCard elem={elem} key={elem._id} />;
+          return (
+            <ComicCard
+              elem={elem}
+              key={elem._id}
+              favorites={favorites}
+              toogleFavorite={toogleFavorite}
+            />
+          );
         })}
       </div>
       <Pagination page={page} setPage={setPage} totalPage={totalPage} />
