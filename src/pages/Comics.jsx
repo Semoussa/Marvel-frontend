@@ -33,7 +33,7 @@ export default function Comics(props) {
             },
           },
         );
-        // console.log(response.data.results);
+        console.log(response.data.results);
 
         setComicsData(response.data.results);
         setTotal(response.data.count);

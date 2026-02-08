@@ -6,7 +6,7 @@ export default function CharacterCard(props) {
   const favoriteObj = {
     id: elem._id,
     type: "character",
-    title: elem.title,
+    title: elem.name,
     description: elem.description,
     thumbnail: elem.thumbnail,
   };
